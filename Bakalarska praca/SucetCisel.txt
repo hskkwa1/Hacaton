@@ -1,3 +1,0 @@
-4Vektor a: 0   5   8   2  10   1   3   2  28   9
-
-Trojica s požadovaným súčtom: a_3 = 8, a_9 = 28, a_10 = 9
