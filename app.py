@@ -28,3 +28,4 @@ if uploaded_file:
 
 st.sidebar.title("Nastavenia")
 st.sidebar.write("Zvoľte parametre pre validáciu dokumentu.")
+print("test")
