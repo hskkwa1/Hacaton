@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/template.html}">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/game.css"/>
+<body>
+    <div class = "header">
+        <h1>Slide a Lama</h1>
+        <a class="abutton" href="/">New Game</a>
+    </div>
+    <hr/>
+    <div class = "player_container">
+        <div class = "pod player1">
+            <img src="/images/red_lama.png" class = "lama-image-left"
+                 th:classappend="${turn == 1} ? 'image-animate' : ''">
+            <div class="text"><label th:text="${player1.getName()}"></label> : <label th:text="${player1.getScore()}"></label></div>
+        </div>
+        <div class="center-container">
+            <div class="text">
+                <label th:text = "${progressPercentage} + '%'"></label>
+                 /
+                <label th:text = "${100 - progressPercentage} + '%'"></label>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar-blue"
+                     th:classappend="${turn == 2} ? 'progress-bar-animate' : ''"></div>
+                <div class="progress-bar-red"
+                     th:style="'width:' + ${progressPercentage} + '%;' + (${progressPercentage} == 100 ? 'border-radius: 20px;' : '')"
+                     th:classappend="${turn == 1} ? 'progress-bar-animate' : ''"></div>
+
+            </div>
+        </div>
+        <div class = "pod player2">
+            <div class="text"><label th:text="${player2.getName()}"></label> : <label th:text="${player2.getScore()}"></label></div>
+            <img src="/images/blue_lama.png"  class = "lama-image-right"
+                 th:classappend="${turn == 2} ? 'image-animate' : ''">
+        </div>
+    </div>
+
+    <div class = "container">
+        <table class="nextSym">
+            <tr>
+                <td style="text-align: center; font-family: 'Roboto'">
+                    <h3>NEXT TILE</h3>
+                </td>
+            </tr>
+            <tr>
+                <td class = "img">
+                    <img th:src="@{'/images/' + ${field.getTileName(nextSymbol)} + '.png'}" >
+                </td>
+            </tr>
+        </table>
+        <table class="lamasfield">
+            <tr>
+                <td></td>
+                <td th:each="column : ${#numbers.sequence(0, field.size - 1)}" class="up-input">
+                    <a th:href="@{'/lamas?way=U&number=' + ${column}}" style="display: block; width: 100%; height: 100%;">
+                        <!-- Use an invisible character or empty span to make the link fill the cell -->
+                        <span aria-hidden="true">&nbsp;</span>
+                    </a>
+                </td>
+                <td></td>
+            </tr>
+            <tr th:each="row : ${#numbers.sequence(0, field.size - 1)}">
+                <td class="left-input">
+                    <a th:href="@{'/lamas?way=L&number=' + ${row}}" style="display: block; width: 100%; height: 100%;">
+                        <!-- Use an invisible character or empty span to make the link fill the cell -->
+                        <span aria-hidden="true">&nbsp;</span>
+                    </a>
+                </td>
+                <td th:each="column : ${#numbers.sequence(0, field.size - 1)}" class = "plates">
+                        <img th:src="@{'/images/' + ${field.getTileName(row, column)} + '.png'}" alt="">
+                </td>
+                <td class="right-input">
+                    <a th:href="@{'/lamas?way=R&number=' + ${row}}" style="display: block; width: 100%; height: 100%;">
+                        <!-- Use an invisible character or empty span to make the link fill the cell -->
+                        <span aria-hidden="true">&nbsp;</span>
+                    </a>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+    <hr/>
+    <!-- Table with best scores -->
+    <div class = "services">
+        <div class = "top">
+            <div class = "top-scores">
+                <h2>Top scores</h2>
+                <table class="scores-table">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Player</th>
+                            <th>Points</th>
+                            <th>Played at</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="score, it : ${scores}">
+                        <td th:text="${it.index +1 }"/>
+                        <td th:text="${score.player}"/>
+                        <td th:text="${score.points}"/>
+                        <td th:text="${#dates.format(score.playedOn, 'dd.MM.yyyy HH:mm')}"/>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class = "comments">
+                <h2>Comments</h2>
+                <table class="comments-table">
+                    <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Player</th>
+                        <th>Comment</th>
+                        <th>Commented on</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="comment, it : ${comments}">
+                        <td th:text="${it.index +1 }"/>
+                        <td th:text="${comment.player}"/>
+                        <td th:text="${comment.getComment()}"/>
+                        <td th:text="${#dates.format(comment.commentedOn, 'dd.MM.yyyy HH:mm')}"/>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class = "rating">
+                <h2>Rating of game : <label th:text="${rating}"></label></h2>
+            </div>
+            <div class="add-review">
+                <h3>Please leave us your review</h3>
+                <div class="inp">
+                    <h4>Select player:</h4>
+                    <select class="player-select" name="playerName" required>
+                        <option th:value="${player1.name}" th:text="${player1.name}"></option>
+                        <option th:value="${player2.name}" th:text="${player2.name}"></option>
+                    </select>
+                </div>
+                <div class="inp">
+                    <h4>Add your rating (1 - 5) : </h4>
+                    <input class="rate-input" type="number" min="1" max="5" step="1" required>
+                </div>
+                <div class="inp">
+                    <h4>Add your comment : </h4>
+                    <textarea class="comment-input" rows="2" maxlength="255" required></textarea>
+                </div>
+                <button class = "butt" id="sendButton">Send</button>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+<script>
+    // Simple JavaScript to handle input restrictions
+    document.querySelector('.rate-input').addEventListener('input', function (e) {
+        var value = parseInt(e.target.value, 10);
+        if (value < 1 || value > 5) {
+            e.target.value = '';
+        }
+    });
+
+    document.getElementById('sendButton').addEventListener('click', function() {
+        // Get the values from the inputs
+        var player = document.querySelector('.player-select').value;
+        var rating = document.querySelector('.rate-input').value;
+        var comment = document.querySelector('.comment-input').value;
+
+        // Validate input
+        if (!rating || rating < 1 || rating > 5 || !comment) {
+            alert('Please enter a valid rating and comment.');
+            return;
+        }
+
+        // Prepare the data to be sent
+        var data = {
+            player: player,
+            rating: rating,
+            comment: comment
+        };
+
+        // Send the data to the server
+        fetch('lamas/add-review', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+            .then(data => {
+                document.querySelector('.comment-input').value = '';
+                document.querySelector('.rate-input').value = '';
+                window.location.reload();
+
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    });
+</script>
+</html>

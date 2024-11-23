@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        .background-split {
+            background-image: linear-gradient(to bottom right, #014349 49.9%, #00334d 50%);
+            height: 100%;
+        }
+        .login-container {
+            background: rgba(0, 21, 35, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            width: 340px;
+            padding: 40px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .login-container h2 {
+            color: #ffffff;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: normal;
+        }
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: #006699;
+        }
+        .icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa;
+            font-size: 18px;
+        }
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #0080ff;
+            color: white;
+            border-radius: 4px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .login-container button:hover {
+            background-color: #0059b3;
+        }
+    </style>
+</head>
+<body>
+<div class="background-split">
+    <div class="login-container">
+        <h2>ENTER USERNAMES</h2>
+        <div class="input-group">
+            <span class="icon">&#128100;</span>
+            <input type="text" id="player1" placeholder="1-st player" required>
+        </div>
+        <div class="input-group">
+            <span class="icon">&#128100;</span>
+            <input type="text" id="player2" placeholder="2-nd player" required>
+        </div>
+        <button id="playButton" type="submit">PLAY</button>
+    </div>
+</div>
+<script>
+    document.getElementById('playButton').addEventListener('click', function() {
+        var player1 = document.getElementById('player1').value.trim();
+        var player2 = document.getElementById('player2').value.trim();
+
+        if (player1 === '' || player2 === '') {
+            alert('Please enter usernames for both players.');
+        } else {
+            window.location.href = '/lamas/new?player1=' + player1 + '&player2=' + player2;
+        }
+    });
+</script>
+</body>
+</html>

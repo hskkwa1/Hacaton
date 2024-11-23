@@ -1,0 +1,2 @@
+Podarilo sa najst take C=2.92 pri takom A=2.79 a B=0.13
+Počet pokusov: 54
