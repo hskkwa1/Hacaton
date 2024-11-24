@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="59265eec-55df-483c-b984-e74b17f88279" name="Changes" comment="test">
-      <change afterPath="$PROJECT_DIR$/utils/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/data_processing.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/main.py" afterDir="false" />
+    <list default="true" id="59265eec-55df-483c-b984-e74b17f88279" name="Changes" comment="Uz skoro final verzia, mozno max par uprav">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/sample_documents.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/sample_documents.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/validation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/dirty_dataset.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/sample_documents.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/data_processing.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/data_processing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/dataset_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/dataset_handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/prompts.py" afterDir="false" />
     </list>
     <list id="c03576fc-1c01-4577-a085-bbd9bfb0fe6f" name="Changes by Halyna" comment="" />
     <list id="106c23da-b697-4ba2-b816-824c00d0dce2" name="Changes by kobra" comment="" />
@@ -127,7 +126,7 @@
       <updated>1732366871061</updated>
       <workItem from="1732366872415" duration="4575000" />
       <workItem from="1732372072266" duration="6526000" />
-      <workItem from="1732394517928" duration="1120000" />
+      <workItem from="1732394517928" duration="12197000" />
     </task>
     <task id="LOCAL-00001" summary="Zakaz filov">
       <option name="closed" value="true" />
@@ -177,7 +176,23 @@
       <option name="project" value="LOCAL" />
       <updated>1732368446872</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="updatujem kod, uz polo funkcny">
+      <option name="closed" value="true" />
+      <created>1732399467859</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1732399467859</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Uz skoro final verzia, mozno max par uprav">
+      <option name="closed" value="true" />
+      <created>1732436061476</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1732436061477</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -188,7 +203,9 @@
     <MESSAGE value="Štruktúra" />
     <MESSAGE value="Nieco do kodu" />
     <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+    <MESSAGE value="updatujem kod, uz polo funkcny" />
+    <MESSAGE value="Uz skoro final verzia, mozno max par uprav" />
+    <option name="LAST_COMMIT_MESSAGE" value="Uz skoro final verzia, mozno max par uprav" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Hacaton$app.coverage" NAME="app Coverage Results" MODIFIED="1732374491148" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

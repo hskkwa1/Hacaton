@@ -3,16 +3,14 @@ import pandas as pd
 import time
 import plotly.express as px
 from data_processing import clean_dataset
-from main import interpret_query_with_openai
+from prompts import interpret_query_with_openai
 
-# Page Configuration
 st.set_page_config(
     page_title="Smart Data Ally",
     page_icon="📊",
     layout="wide"
 )
 
-# Main Banner
 st.markdown("""
     <style>
         .main-banner {
@@ -31,36 +29,30 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-# Sidebar - File Upload and Task Selection
 st.sidebar.title("🔍 Data Explorer")
 uploaded_file = st.sidebar.file_uploader("Upload a CSV file", type=["csv"])
 task = st.sidebar.radio("Choose a task:", ["Overview", "Analyze", "Visualize", "AI Insights"])
 
-# Preload the taxonomy dataset
 @st.cache
 def load_preloaded_taxonomy_data():
     try:
-        file_path = "data/taxonomy_dataset.csv"  # Update path if needed
+        file_path = "data/taxonomy_dataset.csv"
         data = pd.read_csv(file_path)
-        data = clean_dataset(data)  # Ensure data is cleaned
+        data = clean_dataset(data)
         return data
     except FileNotFoundError:
         st.error("Preloaded dataset not found. Please ensure 'taxonomy_dataset.csv' is in the 'data' directory.")
-        return pd.DataFrame()  # Return an empty DataFrame as fallback
+        return pd.DataFrame()
 
 
-# Load dataset
 if uploaded_file:
-    # Load and display user-provided data
     raw_data = pd.read_csv(uploaded_file)
-    data = clean_dataset(raw_data)  # Clean the dataset
+    data = clean_dataset(raw_data)
     st.sidebar.success("Dataset uploaded and cleaned!")
 else:
-    # Load preloaded taxonomy dataset
     st.sidebar.info("Using preloaded taxonomy dataset.")
     data = load_preloaded_taxonomy_data()
 
-# Task: Dataset Overview
 if task == "Overview":
     st.header("📋 Dataset Overview")
     st.write("Below is the dataset used for analysis (cleaned if uploaded):")
@@ -70,7 +62,6 @@ if task == "Overview":
     st.subheader("Dataset Summary")
     st.write(data.describe())
 
-# Task: Analyze Dataset
 elif task == "Analyze":
     st.header("📈 Data Analysis")
     st.write("Perform quick analysis on your dataset.")
@@ -84,7 +75,6 @@ elif task == "Analyze":
         breakdown = data.groupby("Region")[metric].sum().reset_index()
         st.dataframe(breakdown)
 
-# Task: Visualize Dataset
 elif task == "Visualize":
     st.header("📊 Data Visualization")
     st.write("Create charts to visualize your data.")
@@ -104,7 +94,6 @@ elif task == "Visualize":
         fig = px.pie(data, names=x_axis, values=y_axis, title=f"{y_axis} Distribution by {x_axis}")
         st.plotly_chart(fig, use_container_width=True)
 
-# Task: AI Insights
 elif task == "AI Insights":
     st.header("🤖 AI Insights")
     st.write("Ask natural language questions about your dataset, and let AI analyze it for you.")
@@ -119,7 +108,6 @@ elif task == "AI Insights":
         else:
             st.warning("Please enter a question before running the query.")
 
-# Footer
 st.markdown("""
     <hr>
     <p style="text-align: center; font-size: 0.8rem;">
