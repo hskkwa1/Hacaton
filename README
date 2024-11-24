@@ -1,0 +1,2 @@
+You need to make file called boot.py inside which you have to declare variable called
+OPENAI_KEY that will contain you key for openai api. Otherwise it probably wont work.
