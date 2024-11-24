@@ -1,0 +1,11 @@
+ID,Name,Age,Email,Join Date,Score
+1.0,John Doe,25.0,john.doe@example.com,2020-01-15,85.5
+2.0,jane doe,-1.0,jane.doeexample.com,15-01-2020,92.0
+3.0,Alice Smith,30.0,alice_smith@example.com,01/15/2020,-10.0
+4.0,BOB johnson,150.0,,2020-31-01,1000.0
+4.0,BOB JOHNSON,35.0,bob.johnson@example.com,2020-01-31,88.2
+5.0,charlie brown,,charlie.brown@,02/15/2021,
+6.0,,40.0,,,95.3
+,mary.jones,28.0,mary.jones@domain,"March 3, 2021",76.4
+8.0,Tom,27.0,tom123.com,2021-03-15,
+9.0,jack_sparrow,,jack.sparrow@example.com,03-15-21,89.9
